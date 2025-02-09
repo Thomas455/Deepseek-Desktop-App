@@ -1,7 +1,24 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Deepseek_Desktop_App.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="APIkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="model" Type="System.String" Scope="User">
+      <Value Profile="(Default)">deepseek-chat</Value>
+    </Setting>
+    <Setting Name="max_tokens" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4096</Value>
+    </Setting>
+    <Setting Name="temperature" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="APIurl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://api.deepseek.com/v1/chat/completions</Value>
+    </Setting>
+    <Setting Name="ChatFontSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">16</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

@@ -8,7 +8,7 @@ using System.Windows;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Deepseek Desktop App")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Public Edition")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Deepseek Desktop App")]
@@ -48,6 +48,6 @@ using System.Windows;
 //      生成号
 //      修订号
 //
-[assembly: AssemblyVersion("1.2.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: NeutralResourcesLanguage("zh")]

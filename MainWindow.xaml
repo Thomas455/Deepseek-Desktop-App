@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Deepseek_Desktop_App"
         mc:Ignorable="d"
-        Title="Deepseek App" Height="450" Width="800" MinHeight="450" MinWidth="800" SizeChanged="Window_SizeChanged">
+        Title="Deepseek App" Height="450" Width="800" MinHeight="450" MinWidth="800" SizeChanged="Window_SizeChanged" MouseMove="Window_MouseMove">
     
 
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0">
 
         <TextBox Name="ChatShow" Background="WhiteSmoke" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,205,100" 
-                 FontSize="12"  IsReadOnly="True" TextWrapping="Wrap">——————————对话开始——————————</TextBox>
+                 FontSize="16"  IsReadOnly="True" TextWrapping="Wrap">——————————对话开始——————————</TextBox>
 
         <Viewbox HorizontalAlignment="Stretch" Name="MainContrl" VerticalAlignment="Stretch" Margin="0,337,205,10" IsEnabled="True">
             <Grid HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,0">
                 <TextBox Name="ChatIn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,26,10" Width="414" Height="50"
-                     FontSize="14" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" BorderThickness="2" KeyDown="ChatIn_KeyDown" TextChanged="ChatIn_TextChanged">
+                     FontSize="14" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" BorderThickness="2" KeyDown="ChatIn_KeyDown" TextChanged="ChatIn_TextChanged" Loaded="ChatIn_Loaded">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="4,0,0,4"/>
@@ -46,5 +46,48 @@
 
             </Grid>
        </Viewbox>
+
+       <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="SubContrl" Margin="600,0,0,0" IsEnabled="True">
+            <Grid>
+                <Button Margin="10,0,10,100" Width="40" Height="12" Content="导入对话" BorderThickness="1" FontSize="6" Name="InportChat" Click="InportChat_Click">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Margin="10,0,10,70" Width="40" Height="12" Content="保存对话" BorderThickness="1" FontSize="6" Name="SaveChat" Click="SaveChat_Click">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Margin="10,0,10,40" Width="40" Height="12" Content="重置对话" BorderThickness="1" FontSize="6" Name="ChatReset" Click="ChatReset_Click">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Margin="10,0,10,10" Width="40" Height="12" Content="应用设置" BorderThickness="1" FontSize="6" Name="OpenSetting" Click="OpenSetting_Click">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+
+
+            </Grid>
+            
+
+        </Viewbox>
+        
+        
     </Grid>
 </Window>
