@@ -41,6 +41,7 @@ namespace Deepseek_Desktop_App
             // 创建HttpClient实例
             using (HttpClient client = new HttpClient())
             {
+                
                 // 设置请求头，包括API密钥
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Properties.Settings.Default.APIkey);
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
@@ -58,6 +59,7 @@ namespace Deepseek_Desktop_App
                 MainContrl.IsEnabled = false;
                 ChatOut("我: " + ChatIn.Text);
                 ChatIn.Text = "";
+                ChatShow.ScrollToEnd();
 
                 // 将请求体序列化为JSON
                 string jsonContent = JsonSerializer.Serialize(requestBody);
@@ -69,28 +71,46 @@ namespace Deepseek_Desktop_App
                 Console.WriteLine(response.Content);
 
                 // 检查响应是否成功
+                bool IsError=false;
                 if (response.IsSuccessStatusCode)
                 {
                     // 读取响应内容
                     string responseJson = await response.Content.ReadAsStringAsync();
+                    if(responseJson==string.Empty)
+                    {
+                        Console.WriteLine("解析失败: 服务器返回错误");
+                        ChatOut("解析失败: 服务器返回错误");
+                        Deepseek_CSApp.messages.Add(new { role = "assistant", content = "解析失败: 服务器返回错误" });
+                        IsError = true;
+                    }
+
 
                     // 解析响应内容
-                    using (JsonDocument doc = JsonDocument.Parse(responseJson))
+                    if(!IsError)
                     {
-                        JsonElement root = doc.RootElement;
-                        string AIReply = root.GetProperty("choices")[0].GetProperty("message").GetProperty("content").GetString();
-                        Console.WriteLine("AI回复: " + AIReply);
-                        ChatOut("Deepseek: " + AIReply + "\n");
-                        Deepseek_CSApp.messages.Add(new { role = "assistant", content = AIReply });
+                        using (JsonDocument doc = JsonDocument.Parse(responseJson))
+                        {
+                            JsonElement root = doc.RootElement;
+                            string AIReply = root.GetProperty("choices")[0].GetProperty("message").GetProperty("content").GetString();
+                            Console.WriteLine("AI回复: " + AIReply);
+                            ChatOut("Deepseek: " + AIReply + "\n");
+                            Deepseek_CSApp.messages.Add(new { role = "assistant", content = AIReply });
+                        }
                     }
+                    
+                    
                 }
+
                 else
                 {
+
                     Console.WriteLine("请求失败: " + response.StatusCode);
                     string errorResponse = await response.Content.ReadAsStringAsync();
                     Console.WriteLine("错误信息: " + errorResponse);
                     ChatOut("请求失败: " + response.StatusCode + "\n");
-                    Deepseek_CSApp.messages.Add(new { role = "assistant", content = response.StatusCode });
+                    Deepseek_CSApp.messages.Add(new { role = "assistant", content = "请求失败: " + response.StatusCode + "\n" });
+
+
                 }
             }
 
